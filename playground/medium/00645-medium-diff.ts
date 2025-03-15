@@ -12,7 +12,10 @@
 
 /* _____________ Your Code Here _____________ */
 
-type Diff<O, O1> = any
+// & means 'either has', | means 'both have'
+type Diff<F extends object, L extends object> = {
+  [K in keyof (F & L) as K extends keyof (F | L) ? never : K]: (F & L)[K]
+}
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
