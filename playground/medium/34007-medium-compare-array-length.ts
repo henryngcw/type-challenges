@@ -16,7 +16,11 @@
 
 /* _____________ Your Code Here _____________ */
 
-type CompareArrayLength<T extends any[], U extends any[]> = any
+type CompareArrayLength<T extends any[], U extends any[]> = T['length'] extends U['length']
+  ? 0
+  : `${T['length']}` extends keyof U
+    ? -1
+    : 1
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'

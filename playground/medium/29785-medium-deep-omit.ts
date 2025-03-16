@@ -30,7 +30,9 @@
 
 /* _____________ Your Code Here _____________ */
 
-type DeepOmit = any
+type DeepOmit<T, U extends string> = U extends `${infer F}.${infer L}` ? {
+  [K in keyof T]: K extends F ? DeepOmit<T[K], L> : T[K]
+} : Omit<T, U>
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
