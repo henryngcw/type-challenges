@@ -20,7 +20,11 @@
 
 /* _____________ Your Code Here _____________ */
 
-type ExtractToObject<T, U> = any
+type ExtractToObject<T extends Record<string, any>, U extends string> = {
+  [K in (keyof Omit<T, U> | keyof T[U])]:
+  K extends keyof T
+    ? T[K] : T[U][K]
+}
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'

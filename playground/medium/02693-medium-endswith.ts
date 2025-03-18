@@ -20,7 +20,8 @@
 
 /* _____________ Your Code Here _____________ */
 
-type EndsWith<T extends string, U extends string> = any
+// 你的答案
+type EndsWith<T, b extends string> = T extends `${infer _}${b}` ? true : false
 
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
