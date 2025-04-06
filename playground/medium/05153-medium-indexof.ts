@@ -36,6 +36,13 @@ type cases = [
   Expect<Equal<IndexOf<[string, 1, number, 'a', any], any>, 4>>,
   Expect<Equal<IndexOf<[string, 'a'], 'a'>, 1>>,
   Expect<Equal<IndexOf<[any, 1], 1>, 1>>,
+  Expect<Equal<IndexOf<[], 1>, -1>>, // Edge case: empty array
+  Expect<Equal<IndexOf<[undefined, null, false], null>, 1>>, // Test with null
+  Expect<Equal<IndexOf<[undefined, null, false], undefined>, 0>>, // Test with undefined
+  Expect<Equal<IndexOf<[true, false, true], true>, 0>>, // Test with boolean true
+  Expect<Equal<IndexOf<[true, false, true], false>, 1>>, // Test with boolean false
+  Expect<Equal<IndexOf<[1, 2, 3, 4, 5], 6>, -1>>, // Test with non-existent element
+  Expect<Equal<IndexOf<[1, 2, 3, 4, 5], 5>, 4>>, // Test with last element
 ]
 
 /* _____________ Further Steps _____________ */
